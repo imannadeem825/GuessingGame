@@ -10,55 +10,70 @@ void Main()
 
 
 void GuessNumber()
-{
-    int secretNumber = 42;
-    string userGuess = Console.ReadLine();
-    int parsedAnswer = Int32.Parse(userGuess);
+{   
+    for (int chances = 4; chances < 5 && chances > 0; chances--)
 
-    if (string.IsNullOrWhiteSpace(userGuess))
     {
-        Console.WriteLine("Take a guess, won't ya?");
-    }
-    else if (parsedAnswer == secretNumber)
-    {
-        Console.WriteLine("Nice job, you got it!");
-    }
-    else 
-    {
-        Console.WriteLine("Too bad, wrong answer!");
+        int secretNumber = 42;
+        string userGuess = Console.ReadLine();
+
+
+        while(string.IsNullOrEmpty(userGuess))
+        {
+            Console.WriteLine("Take a guess, won't ya?");
+            userGuess = Console.ReadLine();
+        }
+        
+
+        int parsedAnswer = Int32.Parse(userGuess);
+
+        if (parsedAnswer == secretNumber)
+        {
+            Console.WriteLine("Nice job, you got it!");
+        break;
+        }
+        else if (parsedAnswer > secretNumber)
+        {
+            Console.WriteLine("Try a lower number next time!");
+        }
+        else if (parsedAnswer < secretNumber)
+        {
+            Console.WriteLine("Try a higher number next time!");
+        }
+        else if (parsedAnswer != secretNumber && chances == 1) 
+        {
+            Console.WriteLine($"You have one last chance!");
+        }
+        else 
+        {
+            Console.WriteLine("Oh no! No chances left. Play again :)");
+        }
+        Console.WriteLine($"You have {chances - 1} chances left.");
+
     }
 }
 
 
-
-
-
-
-// void GuessNumber()
+// string userAnswer = Console.ReadLine();
+            
+// while(string.IsNullOrEmpty(userAnswer))
 // {
-//     bool userGuess = ProgramAsks("Take a guess, won't ya?");
-//     if (userGuess) 
+//     Console.WriteLine("Please choose a valid option.");
+//     userAnswer = Console.ReadLine();
+// }
+
+
+
+// void ChancesToGuess()
+// {
+//     for (int chances = 4; chances < 5 && chances > 1; chances--) 
 //     {
-        
-//         string answer = Console.ReadLine();
-//         Console.Write(answer)
+//         Console.WriteLine($"You have {chances - 1} chances left.");
 //     }
-
+//     for (int chances = 1; chances < 2 && chances > 0; chances--)
+//     {
+//         Console.WriteLine($"You have one last chance!");
+//     }
 // }
-
-
-// bool ProgramAsks(string question)
-// {
-//     Console.Write($"{question}");
-//     string answer = Console.ReadLine();
-//     Console.Write(answer)
-// }
-
-
-// void ProgramSays(string message)
-// {
-//     Console.WriteLine($"{message}")
-// }
-
 
 
